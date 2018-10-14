@@ -15,6 +15,24 @@ class LoremIpsum{
 	 */
 	private $count_sentence;
 
+	/**
+	 * [$names array of human names]
+	 *
+	 * @var [array]
+	 */
+	private $names;
+
+	/**
+	 * [$surnames array of human surnames]
+	 *
+	 * @var [array]
+	 */
+	private $surnames;
+
+	private $phone_numbers;
+
+	private $email_domen_list;
+
 	public function __construct(){
 		$this -> vocabulary = [
 			'Aenean facilisis venenatis ipsum vel aliquet.',
@@ -42,6 +60,61 @@ class LoremIpsum{
 		];
 
 		$this -> count_sentence = count($this -> vocabulary);
+
+		$this -> names = ['male' => [], 'female' => []];
+		$this -> names['male'] = [
+			'Liam', 'Noah', 'Mason', 'Ethan', 'Logan',
+			'Lucas', 'Jackson', 'Aiden', 'Oliver', 'Jacob',
+			'Elijah', 'Alexander', 'James', 'Benjamin', 'Jack',
+			'Luke', 'William', 'Michael', 'Owen', 'Daniel',
+			'Carter', 'Gabriel', 'Henry', 'Matthew', 'Wyatt',
+			'Caleb', 'Jayden', 'Nathan', 'Ryan', 'Isaac'
+		];
+		$this -> names['female'] = [
+			'Emma', 'Olivia', 'Ava', 'Sophia', 'Isabella',
+			'Mia', 'Charlotte', 'Amelia', 'Emily', 'Madison',
+			'Harper', 'Abigail', 'Avery', 'Lily', 'Ella',
+			'Chloe', 'Evelyn', 'Sofia', 'Aria', 'Ellie',
+			'Aubrey', 'Scarlett', 'Zoey', 'Hannah', 'Audrey',
+			'Grace', 'Addison', 'Zoe', 'Elizabeth', 'Nora'
+		];
+
+		$this -> surnames = [
+			'Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 
+			'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 
+			'Anderson', 'Thomas', 'Jackson', 'White', 'Harris', 
+			'Martin', 'Thompson', 'Garcia', 'Martinez', 'Robinson', 
+			'Clark', 'Rodriguez', 'Lewis', 'Lee', 'Walker', 
+			'Hall', 'Allen', 'Young', 'Hernandez', 'King', 
+			'Wright', 'Lopez', 'Hill', 'Scott', 'Green', 
+			'Adams', 'Baker', 'Gonzalez', 'Nelson', 'Carter',
+			'Mitchell', 'Perez', 'Roberts', 'Turner', 'Phillips', 
+			'Campbell', 'Parker', 'Evans', 'Edwards', 'Collins', 
+			'Stewart', 'Sanchez', 'Morris', 'Rogers', 'Reed', 
+			'Cook', 'Morgan', 'Bell', 'Murphy', 'Bailey', 
+			'Rivera', 'Cooper', 'Richardson', 'Cox', 'Howard', 
+			'Ward', 'Torres', 'Peterson', 'Gray', 'Ramirez', 
+			'James', 'Watson', 'Brooks', 'Kelly', 'Sanders', 
+			'Price', 'Bennett', 'Wood', 'Barnes', 'Ross', 
+			'Henderson', 'Coleman', 'Jenkins', 'Perry', 'Powell', 
+			'Long', 'Patterson', 'Flores', 'Washington', 'Hughes',
+			'Butler', 'Simmons', 'Gonzales', 'Foster', 'Bryant', 
+			'Alexander', 'Russell', 'Griffin', 'Diaz', 'Hayes'
+		];
+
+		$this -> phone_numbers = ['country_code' => ['+1', '+3', '+7', '+9', '+2', '+4'], 'region_code' => [
+			209, 213, 310, 323, 408, 415, 424, 510, 530, 559, 562, 619, 626, 650, 661, 707, 714, 760, 805, 818, 831, 858, 909, 925, 949,
+			239, 305, 321, 352, 386, 407, 561, 727, 754, 772, 786, 813, 850, 863, 904, 941, 954,
+			217, 224, 309, 312, 331, 464, 618, 630, 708, 773, 779, 815, 847, 872
+		]];
+		$this -> phone_numbers['count_country_code'] = count($this -> phone_numbers['country_code']);
+		$this -> phone_numbers['count_region_code'] = count($this -> phone_numbers['region_code']);
+		$this -> email_domen_list = [
+			'gmail',
+			'yahoo',
+			'hotmail',
+			'outlook'
+		];
 	}
 
 	/**
@@ -121,14 +194,142 @@ class LoremIpsum{
 		$prevnum = -1;
 		$li = [];
 		for($i=0; $i<$count; $i++){
-			$currentnum = rand(0, $this -> count_sentence);
+			$currentnum = rand(0, $this -> count_sentence - 1);
 			if($currentnum == $prevnum){
-				$currentnum = rand(0, $this -> count_sentence);
+				$currentnum = rand(0, $this -> count_sentence - 1);
 			}
 			$li[] = $this -> vocabulary[$currentnum];
 			$prevnum = $currentnum;
 		}
 
 		return $li;
+	}
+
+	// ---- NAMES ---- //
+	
+	/**
+	 * [get_name generate and return random eng name]
+	 *
+	 * @param  [string] $sex [man or woman or if $sex == null, then random]
+	 *
+	 * @return [string] [name]
+	 */
+	public function get_name($sex = null){
+		if(is_null($sex)){
+			$sex = rand(0, 1);
+			$sex = $sex ? 'male' : 'female';
+		}
+		$count_names = count($this -> names[$sex]);
+		return $this -> names[$sex][rand(0, $count_names - 1)];
+	}
+
+	/**
+	 * [get_woman_name wrapper for get_name func]
+	 *
+	 * @return [string] [woman name]
+	 */
+	public function get_woman_name(){
+		return $this -> get_name('female');
+	}
+
+	/**
+	 * [get_man_name wrapper for get_name func]
+	 *
+	 * @return [string] [man name]
+	 */
+	public function get_man_name(){
+		return $this -> get_name('male');
+	}
+
+	/**
+	 * [get_surname description]
+	 *
+	 * @return [string] [return surname]
+	 */
+	public function get_surname(){
+		$count_surnames = count($this -> surnames);
+		return $this -> surnames[rand(0, $count_surnames - 1)];
+	}
+
+	/**
+	 * [get_full_name_to_str return name and surname with separator space]
+	 *
+	 * @return [string] [return name and surname with separator space]
+	 */
+	public function get_full_name_to_str(){
+		return $this -> get_name() . ' ' . $this -> get_surname();
+	}
+
+	/**
+	 * [get_full_name_to_arr return name and surname in array]
+	 *
+	 * @return [array] [return name and surname in array]
+	 */
+	public function get_full_name_to_arr(){
+		return ['name' => $this -> get_name(), 'surname' => $this -> get_surname()];
+	}
+
+	// ---- PHONE NUMBERS ---- //
+	
+	/**
+	 * [get_phone_number get phone number]
+	 *
+	 * @return [string] [formated phone number]
+	 */
+	public function get_phone_number(){
+		$count_country_code = $this -> phone_numbers['count_country_code'] - 1;
+		$count_region_code = $this -> phone_numbers['count_region_code'] - 1;
+		$country_code = $this -> phone_numbers['country_code'][ rand(0, $count_country_code) ];
+		$region_code = $this -> phone_numbers['region_code'][ rand(0, $count_region_code) ];
+		$phone_number = $country_code . ' ' . $region_code . '-' . rand(100, 999) . '-' . rand(1000, 9999);
+		return $phone_number;
+	}
+
+	// ---- EMAIL ---- //
+
+	/**
+	 * [get_email email address]
+	 *
+	 * @param  string $name [user name]
+	 * @param  string $surname [user surname]
+	 *
+	 * @return [string] [email]
+	 */
+	public function get_email($name = false, $surname = false){
+		$count = count($this -> email_domen_list) - 1;
+		$name = $name ? $name : $this -> get_name();
+		$surname = $surname ? $surname : $this -> get_surname();
+		$sep_arr = ['.', '_', ''];
+		$sep = $sep_arr[ rand(0, count($sep_arr) - 1) ];
+		$host = $this -> email_domen_list[ rand(0, $count) ];
+		$email = strtolower($name) . $sep . strtolower($surname) . '@' . $host . '.com';
+		return $email;
+	}
+
+	// ---- USER ---- //
+
+	/**
+	 * [get_user_card data about one random user]
+	 *
+	 * @param  [string] $sex [male or female]
+	 *
+	 * @return [array] [user card in assoc array]
+	 */
+	public function get_user_card($sex = null){
+		if(is_null($sex)){
+			$sex = rand(0, 1);
+			$sex = $sex ? 'male' : 'female';
+		}
+		$name = $this -> get_name($sex);
+		$surname = $this -> get_surname();
+		$user = [
+			'name' => $name,
+			'surname' => $surname,
+			'sex' => $sex,
+			'phone' => $this -> get_phone_number(),
+			'email' => $this -> get_email($name, $surname)
+		];
+
+		return $user;
 	}
 }
