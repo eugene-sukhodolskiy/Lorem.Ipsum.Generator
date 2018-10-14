@@ -56,7 +56,16 @@ class LoremIpsum{
 			'Proin vulputate tincidunt erat id auctor.',
 			'Sed non justo enim.',
 			'Vestibulum imperdiet nunc id metus pellentesque eleifend.',
-			'Vivamus ultricies iaculis arcu, vitae bibendum tellus feugiat venenatis.'
+			'Vivamus ultricies iaculis arcu, vitae bibendum tellus feugiat venenatis.',
+			'Sed ultricies mi vel aliquet eleifend.',
+			'Ut egestas est id ligula gravida, quis lobortis lacus consectetur.',
+			'Cras ac urna fringilla, bibendum leo sit amet, suscipit nisi.',
+			'Sed gravida erat sit amet neque rutrum mattis.',
+			'Integer at ex nec nunc euismod scelerisque.',
+			'Nullam faucibus dui imperdiet rutrum rhoncus.',
+			'Proin scelerisque sapien et augue sodales auctor.',
+			'In posuere erat ut posuere mollis.',
+			'Morbi lobortis ipsum eu ipsum eleifend, eu tincidunt arcu sagittis.'
 		];
 
 		$this -> count_sentence = count($this -> vocabulary);
