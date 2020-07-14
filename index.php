@@ -8,7 +8,7 @@
 	<pre>
 		<?php
 			include 'LoremIpsum.php';
-			$lorem = new LoremIpsum();
+			$lorem = new LoremIpsum('en');
 			$p = $lorem -> gen_paragraphs(4);
 			$slist = $lorem -> gen_list(6);
 			$words = $lorem -> gen_words(10);
