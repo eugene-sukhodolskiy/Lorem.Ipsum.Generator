@@ -1,0 +1,15 @@
+{
+    "name": "Lorem Ipsum Generator",
+    "ver": "0.1",
+    "author": "E. Sukhodolskiy",
+    "tags": [
+        "personal",
+        "php",
+        "tool"
+    ],
+    "type": "web",
+    "status": "open",
+    "project_color": null,
+    "git_url": null,
+    "release_url": null
+}
