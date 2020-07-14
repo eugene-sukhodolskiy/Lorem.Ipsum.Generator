@@ -233,20 +233,20 @@ class LoremIpsum{
 	}
 
 	/**
-	 * [get_woman_name wrapper for get_name func]
+	 * [get_female_name wrapper for get_name func]
 	 *
-	 * @return [string] [woman name]
+	 * @return [string] [female name]
 	 */
-	public function get_woman_name(){
+	public function get_female_name(){
 		return $this -> get_name('female');
 	}
 
 	/**
-	 * [get_man_name wrapper for get_name func]
+	 * [get_male_name wrapper for get_name func]
 	 *
-	 * @return [string] [man name]
+	 * @return [string] [male name]
 	 */
-	public function get_man_name(){
+	public function get_male_name(){
 		return $this -> get_name('male');
 	}
 

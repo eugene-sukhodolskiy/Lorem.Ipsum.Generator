@@ -13,8 +13,8 @@
 			$slist = $lorem -> gen_list(6);
 			$words = $lorem -> gen_words(10);
 			$name = $lorem -> get_name();
-			$name_man = $lorem -> get_man_name();
-			$name_woman = $lorem -> get_woman_name();
+			$name_man = $lorem -> get_male_name();
+			$name_woman = $lorem -> get_female_name();
 			$surname = $lorem -> get_surname();
 			$full_name = $lorem -> get_full_name_to_str();
 			$phone_number = $lorem -> get_phone_number();
